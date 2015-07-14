@@ -1,0 +1,7 @@
+FROM centos:centos6
+MAINTAINER Hannes Lehmann
+VOLUME ["/mnt/share/installation"]
+RUN yum -y install bc
+RUN mkdir /opt/tibco
+RUN mkdir /data
+CMD ["/bin/bash"] 

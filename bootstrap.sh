@@ -39,3 +39,4 @@ sudo docker build -t tib_ems .
 
 
 echo "Bootstrap script finished." >> /var/log/bootstrap.log
+shutdown -r now

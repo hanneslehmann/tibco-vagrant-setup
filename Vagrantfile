@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
 
   (1..$num_instances).each do |i|
     config.vm.define vm_name = "%s-%02d" % [$instance_name_prefix, i] do |config|
-      config.vm.hostname = vm_name
+    config.vm.hostname = vm_name
 
       if $enable_serial_logging
         logdir = File.join(File.dirname(__FILE__), "log")
@@ -136,11 +136,13 @@ Vagrant.configure("2") do |config|
       config.nfs.map_uid = Process.uid
       config.nfs.map_gid = Process.gid
 
-      if Vagrant::Util::Platform.windows?
-		if File.exist?(share_install_dir)
-			config.vm.synced_folder "#{share_install_dir}", "/mnt/share/installation", create: true, :nfs => true
-		end
-	  end  
+	  # Following lines need to be tuned!!
+      #if Vagrant::Util::Platform.windows?
+	  #if File.exist?$share_install_dir
+		    config.vm.synced_folder "E:\\tibco\\installation", "/mnt/share/installation", create: true, :nfs => true
+			# config.vm.synced_folder "#{share_install_dir}", "/mnt/share/installation", create: true, :nfs => true
+	  #end
+	  #end  
 	  
       #$shared_folders.each_with_index do |(host_folder, guest_folder), index|
       #  config.vm.synced_folder host_folder.to_s, guest_folder.to_s, id: "core-share%02d" % index, nfs: true, mount_options: ['nolock,vers=3,udp']
